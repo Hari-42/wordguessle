@@ -5,6 +5,15 @@ export default function Home() {
         <p className="text-lg sm:text-xl text-black  max-w-md">
           This project is inspired by the New York Times Wordle.
         </p>
+          <input
+              type="text"
+              placeholder="Enter your guess"
+              maxLength={5}
+              className="border border-gray-300 text-black rounded px-4 py-2 text-lg text-center mb-4"
+          />
+          <button className="bg-black text-white px-4 py-2 rounded">
+              Submit Guess
+          </button>
       </div>
   );
 }
