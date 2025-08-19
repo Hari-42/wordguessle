@@ -1,10 +1,39 @@
 "use client";
 
+import { useState } from "react";
+
 export default function Home() {
-    const grid = Array(6).fill(null).map(() => Array(5).fill(""));
+    const [grid, setGrid] = useState(
+        Array(6).fill(null).map(() => Array(5).fill(""))
+    );
+    const [row, setRow] = useState(0);
+    const [col, setCol] = useState(0);
+
+    const handleKeyDown = (e) => {
+        if (row >= 6) return;
+
+        if (/^[a-zA-Z]$/.test(e.key) && col < 5) {
+            const newGrid = grid.map(r => [...r]);
+            newGrid[row][col] = e.key.toUpperCase();
+            setGrid(newGrid);
+            setCol(col + 1);
+        } else if (e.key === "Backspace" && col > 0) {
+            const newGrid = grid.map(r => [...r]);
+            newGrid[row][col - 1] = "";
+            setGrid(newGrid);
+            setCol(col - 1);
+        } else if (e.key === "Enter" && col === 5) {
+            setRow(row + 1);
+            setCol(0);
+        }
+    };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen p-8 text-center">
+        <div
+            tabIndex={0}
+            onKeyDown={handleKeyDown}
+            className="flex flex-col items-center justify-center min-h-screen p-8 text-center outline-none"
+        >
             <h1 className="text-5xl font-bold mb-4">wordguessle</h1>
             <p className="text-lg mb-6">This project is inspired by the New York Times Wordle.</p>
 
