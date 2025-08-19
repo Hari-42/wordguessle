@@ -24,9 +24,8 @@ export default function RootLayout({ children }) {
             className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
         >
         <main className="flex-grow">{children}</main>
-        <footer className="w-full border-t bg-white p-4 flex justify-between items-center text-sm text-gray-600">
+        <footer className="w-full border-t bg-black p-4 flex justify-between items-center text-sm text-white">
             <span className="font-mono">wordguessle</span>
-            <span>© wordguessle, All rights reserved</span>
             <a
                 href="https://github.com/Hari-42"
                 target="_blank"

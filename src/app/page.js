@@ -1,36 +1,27 @@
 "use client";
 
-import { useState } from "react";
-
-
 export default function Home() {
-    const [guess, setGuess] = useState("");
-
-    const handleSubmit = () => {
-        console.log("Guess submitted:", guess);
-        setGuess("");
-    };
+    const grid = Array(6).fill(null).map(() => Array(5).fill(""));
 
     return (
-      <div className="flex bg-white flex-col items-center justify-center min-h-screen p-8 text-center">
-        <h1 className="text-5xl sm:text-7xl text-black font-bold mb-4">wordguessle</h1>
-        <p className="text-lg sm:text-xl text-black  max-w-md">
-          This project is inspired by the New York Times Wordle.
-        </p>
-          <input
-              type="text"
-              placeholder="Enter your guess"
-              maxLength={5}
-              value={guess}
-              onChange={(e) => setGuess(e.target.value)}
-              className="border border-gray-300 text-black rounded px-4 py-2 text-lg text-center mb-4"
-          />
-          <button
-              onClick={handleSubmit}
-              className="bg-black text-white px-4 py-2 rounded"
-          >
-              Submit Guess
-          </button>
-      </div>
-  );
+        <div className="flex flex-col items-center justify-center min-h-screen p-8 text-center">
+            <h1 className="text-5xl font-bold mb-4">wordguessle</h1>
+            <p className="text-lg mb-6">This project is inspired by the New York Times Wordle.</p>
+
+            <div className="grid grid-rows-6 gap-2">
+                {grid.map((row, i) => (
+                    <div key={i} className="grid grid-cols-5 gap-2">
+                        {row.map((cell, j) => (
+                            <div
+                                key={j}
+                                className="w-12 h-12 border flex items-center justify-center text-xl font-bold"
+                            >
+                                {cell}
+                            </div>
+                        ))}
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
 }
